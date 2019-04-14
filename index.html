@@ -17,34 +17,48 @@
 
         <header class="header clearfix">
             <div class="menu">
-                Анонимная фраза дня
+                Фраза дня
             </div>
-            <div class="date">
+            <div id="date" class="date">
                 27.10.19 10:50
             </div>
         </header>
 
         <div class="content">
-            <div class="day-phraze">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt, at doloremque accusamus consequatur architecto reiciendis odio consequuntur ratione, eveniet perspiciatis et nisi repellendus voluptas quis?
+            <div class="block">
+                <div class="day-phraze">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt, at doloremque accusamus
+                    consequatur architecto reiciendis odio consequuntur ratione
+                </div>
+                <div class="input-form">
+                    <input class="input-text" type="text" size="40" placeholder="Введите фразу дня">
+                    <input class="input-submit" type="submit" value="Отправить">
+                </div>
             </div>
-            <div class="input-form">
-                <input type="text" size="40" placeholder="Введите фразу дня">
-                <input type="submit" value="Отправить">
+            <div class="second-block">
+                <div class="grid-item">
+                    <div class="counter">
+                        <p class="bold number">30</p>
+                        <p>Добавлено фраз</p>
+                    </div>
+                </div>
+                <div class="grid-item">
+                    <div class="counter">
+                        <p class="bold number">30</p>
+                        <p>Показано фраз</p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
     <footer>
-        <div class="counter">
-            <p>30</p>
-            <p>Добавлено фраз</p>
-        </div>
-        <div class="counter">
-            <p>30</p>
-            <p>Показано фраз</p>
+        <div class="author">
+            Made by: Terekhin Ferdor
         </div>
     </footer>
+
+    <script src="./js/script.js"></script>
 </body>
 
 </html>
