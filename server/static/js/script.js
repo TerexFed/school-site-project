@@ -1,3 +1,51 @@
+function getDailyPhraze() {
+
+  var getDailyPhrazeReq = new XMLHttpRequest();
+
+  getDailyPhrazeReq.open('GET', 'http://localhost:3000/get', true);
+  getDailyPhrazeReq.addEventListener('readystatechange', function () {
+    if ((getDailyPhrazeReq.readyState == 4) && (getDailyPhrazeReq.status == 200)) {
+      console.log(getDailyPhrazeReq);
+      var phraze = document.getElementById('day-phraze');
+      phraze.innerHTML = getDailyPhrazeReq.responseText;
+    }
+  });
+  getDailyPhrazeReq.send();
+}
+
+function updateCounter() {
+
+  var counterUpdateReq = new XMLHttpRequest();
+  var counter = document.getElementById("counter")
+
+  counterUpdateReq.open('GET', 'http://localhost:3000/phrazeCounter', true);
+  counterUpdateReq.addEventListener('readystatechange', function () {
+    if ((counterUpdateReq.readyState == 4) && (counterUpdateReq.status == 200)) {
+      console.log(counterUpdateReq);
+      counter.innerHTML = counterUpdateReq.responseText;
+    }
+  });
+  counterUpdateReq.send();
+}
+
+function sentPhraze() {
+
+  var phrazeInput = document.getElementById("phraze-input").value;
+  var addDailyPhrazeReq = new XMLHttpRequest();
+
+  addDailyPhrazeReq.open('POST', 'http://localhost:3000/add?phraze=' + phrazeInput, true);
+  addDailyPhrazeReq.addEventListener('readystatechange', function () {
+
+    if ((addDailyPhrazeReq.readyState == 4) && (addDailyPhrazeReq.status == 200)) {
+      console.log(addDailyPhrazeReq);
+    }
+
+  });
+  addDailyPhrazeReq.send();
+  phrazeInput.innerHTML = "Введите фразу дня";
+  document.location.reload(true);
+}
+
 window.onload = function () {
   (function () {
     var date = new Date();
@@ -8,45 +56,5 @@ window.onload = function () {
   })();
 };
 
-function sentPhraze() {
-
-  var phrazeInput = document.getElementById("phraze-input").value;
-
-  var addDailyPhraze = new XMLHttpRequest();
-
-  addDailyPhraze.open('POST', 'http://localhost:3000/add?phraze=' + phrazeInput, true);
-
-  addDailyPhraze.addEventListener('readystatechange', function () {
-
-    if ((addDailyPhraze.readyState == 4) && (addDailyPhraze.status == 200)) {
-      console.log(addDailyPhraze);
-      console.log(addDailyPhraze.responseText);
-      var phraze = document.getElementById('day-phraze');
-      phraze.innerHTML = addDailyPhraze.responseText;
-    }
-
-  });
-
-  addDailyPhraze.send();
-}
-
-// 2. Создание переменной request
-var request = new XMLHttpRequest();
-// 3. Настройка запроса
-request.open('GET', 'http://localhost:3000/get', true);
-// 4. Подписка на событие onreadystatechange и обработка его с помощью анонимной функции
-request.addEventListener('readystatechange', function () {
-  // если состояния запроса 4 и статус запроса 200 (OK)
-  if ((request.readyState == 4) && (request.status == 200)) {
-    // например, выведем объект XHR в консоль браузера
-    console.log(request);
-    // и ответ (текст), пришедший с сервера в окне alert
-    console.log(request.responseText);
-    // получить элемент c id = welcome
-    var phraze = document.getElementById('day-phraze');
-    // заменить содержимое элемента ответом, пришедшим с сервера
-    phraze.innerHTML = request.responseText;
-  }
-});
-// 5. Отправка запроса на сервер
-request.send();
+getDailyPhraze();
+updateCounter();
